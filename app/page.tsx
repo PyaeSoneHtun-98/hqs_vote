@@ -162,14 +162,14 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-emerald-100 to-green-200">
         <Loader2 className="w-12 h-12 text-green-500 animate-spin" />
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 py-8 px-4">
+    <main className="min-h-screen bg-gradient-to-br from-green-100 via-emerald-100 to-green-200 py-8 px-4">
       <audio ref={audioRef} src="/celebration.mp3" />
 
       {/* Image Modal */}
@@ -199,15 +199,19 @@ export default function Home() {
       )}
 
       <div className="max-w-6xl mx-auto">
-        <header className="flex flex-wrap items-center justify-between gap-3 mb-4 bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-sm">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-green-500" />
-            <h1 className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+        <header className="relative flex items-center justify-between mb-4 bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-sm">
+          {/* Logo */}
+          <img src="/hqslogo.png" alt="HQS Logo" className="h-10 w-auto" />
+
+          {/* Center Title */}
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent whitespace-nowrap">
               Vote For Best Dressed
             </h1>
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* Right side - Timer & Votes */}
+          <div className="flex items-center gap-2">
             {votingStatus === "before" && (
               <div className="flex items-center gap-2 text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full text-sm">
                 <Clock size={16} />
@@ -225,13 +229,12 @@ export default function Home() {
             {votingStatus === "ended" && (
               <div className="flex items-center gap-2 text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full text-sm">
                 <Trophy size={16} className="text-yellow-500" />
-                <span className="font-semibold">Voting ended</span>
+                <span className="font-semibold">Ended</span>
               </div>
             )}
 
             <div className="flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1.5 rounded-full text-sm">
               <Users size={16} />
-              Votes
               <span className="font-semibold">{totalVotes}</span>
             </div>
           </div>
