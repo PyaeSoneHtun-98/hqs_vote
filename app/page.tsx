@@ -70,11 +70,12 @@ export default function Home() {
   useEffect(() => {
     if (votingStatus === "ended" && !showCelebration) {
       setShowCelebration(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
       if (audioRef.current) {
         audioRef.current.play().catch(() => {});
       }
     }
-  }, [votingStatus]);
+  }, [votingStatus, showCelebration]);
 
   const updateVotingStatus = () => {
     if (!settings?.voting_start || !settings?.voting_end) {
@@ -202,7 +203,7 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-green-500" />
             <h1 className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-              Fashion Vote
+              Vote For Best Dressed
             </h1>
           </div>
 
